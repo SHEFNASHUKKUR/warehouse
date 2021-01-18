@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { DashboardComponent } from './managerlogin/dashboard/dashboard.component';
+import { AdmindashboardComponent } from './adminlogin/admindashboard/admindashboard.component';
 
 
 const routes: Routes = [ 
@@ -34,7 +35,8 @@ const routes: Routes = [
     MainComponent,
     ManagerloginComponent,
     AdminloginComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdmindashboardComponent
   ],
   imports: [
     BrowserModule,
