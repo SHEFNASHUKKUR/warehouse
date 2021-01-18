@@ -14,8 +14,12 @@ export class AdminloginComponent implements OnInit {
   ngOnInit(): void {
   }
   OnSubmit(data){
-    this.http.post<any>(environment.url+'/api/admin', { username: data.user,
+    this.http.post<any>(environment.url+'/api/adminlogin', { username: data.email,
      password: data.pass }).subscribe(result => {
+       console.log(result.status);
+       localStorage.setItem('token',result.token)
+       location.replace("/dashboard")
+      
   });
 }
 
