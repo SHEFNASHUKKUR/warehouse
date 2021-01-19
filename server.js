@@ -43,7 +43,7 @@ app.post('/api/login', function(req, res) {
         db.query("SELECT * FROM department where email='"+user+"' and password='"+pass+"'", function (err, result, fields) {
           if (err) throw err;
           console.log(result);
-          const token = jwt.sign({ "username":result.username }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
+          const token = jwt.sign({ "username":result }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
           console.log(token)
           res.status(200).json({'status':'success','token': token});
         });
