@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'manager', component: ManagerloginComponent },
   { path: 'admin', component: AdminloginComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'administrator', component: AdmindashboardComponent }
 ];
 
 

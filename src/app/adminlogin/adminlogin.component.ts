@@ -18,7 +18,7 @@ export class AdminloginComponent implements OnInit {
      password: data.pass }).subscribe(result => {
        console.log(result.status);
        localStorage.setItem('token',result.token)
-       location.replace("/dashboard")
+       location.replace("/administrator")
       
   });
 }
