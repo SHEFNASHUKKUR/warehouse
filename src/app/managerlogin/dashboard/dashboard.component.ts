@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
 
   status=0;
   user;
+  rfidlist:  any[]=[];
   constructor(private http: HttpClient) {
     var token=localStorage.getItem('token');
     let headers = new HttpHeaders();
@@ -21,7 +22,20 @@ export class DashboardComponent implements OnInit {
               this.user=result.name;
              }
   });
+
+
+  this.http.post<any>(environment.url+'/api/rfid',{},{headers: headers}).subscribe(result => {
+    if (result.status==1){
+           
+           this.rfidlist=result.info;
+          }
+});
+
 }
+
+
+
+
 
 OnLogout(){
   localStorage.removeItem('token');

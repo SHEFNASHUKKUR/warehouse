@@ -119,6 +119,19 @@ app.post('/api/managerinfo',authenticateToken, function(req, res) {
             });
           });
             });
+
+
+
+
+            app.post('/api/rfid',authenticateToken, function(req, res) {
+              db.connect(function(err) {
+                //if (err) throw err;
+               
+                db.query("SELECT item,action,quantity,date,time FROM rfid r, registration d where r.tagid=d.tagid;", function (err, result, fields) {
+                  res.status(200).json({'status':1,'info': result});
+                });
+              });
+                });
     
 
 
