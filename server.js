@@ -132,6 +132,70 @@ app.post('/api/managerinfo',authenticateToken, function(req, res) {
                 });
               });
                 });
+
+
+                app.get('/api/tagread', function(req, res) {
+                  var id = req.query.id
+
+                      var today = new Date();
+                      var dd = today.getDate();
+
+                      var mm = today.getMonth()+1; 
+                      var yyyy = today.getFullYear();
+                      if(dd<10) 
+                        {
+                      dd='0'+dd;
+                        } 
+
+                        if(mm<10) 
+                        {
+                         mm='0'+mm;
+                        } 
+                        today = yyyy+'-'+mm+'-'+dd;
+
+
+
+
+                        given_seconds = 3685; 
+
+  
+
+            dateObj = new Date(given_seconds * 1000); 
+
+            hours = dateObj.getUTCHours(); 
+
+            minutes = dateObj.getUTCMinutes(); 
+
+            seconds = dateObj.getSeconds(); 
+
+  
+
+            timeString = hours.toString().padStart(2, '0') 
+
+                + ':' + minutes.toString().padStart(2, '0') 
+
+                + ':' + seconds.toString().padStart(2, '0');
+
+                  db.connect(function(err) {
+                    //if (err) throw err;
+                   
+                    db.query("SELECT EXISTS(SELECT * from rfid WHERE tagid="+id+")", function (err, result, fields) {
+                      console.log(result);
+                      if (result==1){
+                        db.query("UPDATE rfid set status=1 where tagid="+id, function (err, result, fields) {
+
+                        });
+                        
+                      }
+                      else{
+                        db.query("INSERT INTO rfid(tagid, action, date, time) VALUES ("+id,0,today,timeString+")", function (err, result, fields) {
+
+                        });
+                      }
+                      res.status(200).json({'status':1});
+                    });
+                  });
+                    });
     
 
 
