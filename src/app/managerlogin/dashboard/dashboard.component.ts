@@ -23,6 +23,11 @@ export class DashboardComponent implements OnInit {
   });
 }
 
+OnLogout(){
+  localStorage.removeItem('token');
+  location.replace('/manager');
+}
+
   ngOnInit(): void {
   }
 

@@ -29,7 +29,23 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, accessTokenSecret, (err, user) => {
     if (err) return res.status(200).json({"status":"0"})
-    req.user = user.username
+    req.user = user.email
+    next()
+  })
+}
+
+
+
+
+const adminTokenSecret = 'adminismyhero';
+function authenticateTokenadmin(req, res, next) {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(' ')[1]
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, adminTokenSecret, (err, user) => {
+    if (err) return res.status(200).json({"status":"0"})
+    req.admin = user.username
     next()
   })
 }
@@ -41,9 +57,9 @@ app.post('/api/login', function(req, res) {
     db.connect(function(err) {
         //if (err) throw err;
         db.query("SELECT * FROM department where email='"+user+"' and password='"+pass+"'", function (err, result, fields) {
-          if (err) throw err;
-          console.log(result);
-          const token = jwt.sign({ "username":result }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
+          //if (err) throw err;
+          console.log(result[0].email);
+          const token = jwt.sign({ "email":result[0].email }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
           console.log(token)
           res.status(200).json({'status':'success','token': token});
         });
@@ -56,26 +72,56 @@ app.post('/api/adminlogin', function(req, res) {
     var pass = req.body.password;
     console.log(user,pass);
     db.connect(function(err) {
-        if (err) throw err;
+        //if (err) throw err;
         db.query("SELECT * FROM admin where username='"+user+"' and password='"+pass+"'", function (err, result, fields) {
-          if (err) throw err;
+          //if (err) throw err;
           console.log(result);
-          const token = jwt.sign({ "username":user }, "adminismyhero", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
+          const token = jwt.sign({ "username":result[0].username }, "adminismyhero", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
           console.log(token)
-          res.status(200).json({'status':'success','token': token});
+          res.status(200).json({'status':'1','token': token});
         });
       });
     
 })
 
-app.post('/api/managerinfo', function(req, res) {
+app.post('/api/managerinfo',authenticateToken, function(req, res) {
   db.connect(function(err) {
     //if (err) throw err;
-    db.query("SELECT * FROM department where username='"+req.user+"' ", function (err, result, fields) {
-      res.status(200).json({'status':1,'info': fields});
+    console.log(req.user);
+    db.query("SELECT * FROM department where email='"+req.user+"' ", function (err, result, fields) {
+      res.status(200).json({'status':1,'info': result[0].name});
     });
   });
     });
+
+
+
+    app.post('/api/admininfo',authenticateTokenadmin, function(req, res) {
+      db.connect(function(err) {
+        //if (err) throw err;
+       
+        db.query("SELECT * FROM admin where username='"+req.admin+"' ", function (err, result, fields) {
+          res.status(200).json({'status':1,'info': result[0].username});
+        });
+      });
+        });
+
+
+
+          //copied
+
+        app.post('/api/managerlist',authenticateTokenadmin, function(req, res) {
+          db.connect(function(err) {
+            //if (err) throw err;
+           
+            db.query("SELECT g.regid,g.title,g.city,d.name,d.contact FROM godown g,department d WHERE g.regid = d.regid", function (err, result, fields) {
+              res.status(200).json({'status':1,'info': result});
+            });
+          });
+            });
+    
+
+
 
 app.listen('3000', () => {
     console.log('server started on port 3000')
