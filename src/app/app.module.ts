@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { DashboardComponent } from './managerlogin/dashboard/dashboard.component';
 import { AdmindashboardComponent } from './adminlogin/admindashboard/admindashboard.component';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [ 
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'manager', component: ManagerloginComponent },
   { path: 'admin', component: AdminloginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'administrator', component: AdmindashboardComponent }
+  { path: 'administrator', component: AdmindashboardComponent },
+  { path: 'search', component: SearchComponent }
 ];
 
 
@@ -37,7 +39,8 @@ const routes: Routes = [
     ManagerloginComponent,
     AdminloginComponent,
     DashboardComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
