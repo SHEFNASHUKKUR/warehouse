@@ -179,7 +179,7 @@ app.post('/api/managerinfo',authenticateToken, function(req, res) {
                   db.connect(function(err) {
                     //if (err) throw err;
                    
-                    db.query("SELECT EXISTS(SELECT * from rfid WHERE tagid="+id+")", function (err, result, fields) {
+                    db.query("SELECT EXISTS(SELECT 1 from rfid WHERE tagid= '"+id+"')", function (err, result, fields) {
                       console.log(result);
                       if (result==1){
                         db.query("UPDATE rfid set status=1 where tagid="+id, function (err, result, fields) {
