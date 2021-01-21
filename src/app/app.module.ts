@@ -16,6 +16,7 @@ import { AdmindashboardComponent } from './adminlogin/admindashboard/admindashbo
 import { SearchComponent } from './search/search.component';
 import { StockComponent } from './managerlogin/dashboard/stock/stock.component';
 import { TagassignComponent } from './managerlogin/tagassign/tagassign.component';
+import { CommodityComponent } from './managerlogin/dashboard/commodity/commodity.component';
 
 
 const routes: Routes = [ 
@@ -46,7 +47,8 @@ const routes: Routes = [
     AdmindashboardComponent,
     SearchComponent,
     StockComponent,
-    TagassignComponent
+    TagassignComponent,
+    CommodityComponent
   ],
   imports: [
     BrowserModule,
