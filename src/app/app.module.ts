@@ -14,6 +14,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { DashboardComponent } from './managerlogin/dashboard/dashboard.component';
 import { AdmindashboardComponent } from './adminlogin/admindashboard/admindashboard.component';
 import { SearchComponent } from './search/search.component';
+import { StockComponent } from './managerlogin/dashboard/stock/stock.component';
 
 
 const routes: Routes = [ 
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminloginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'administrator', component: AdmindashboardComponent },
-  { path: 'search', component: SearchComponent }
+  { path: 'search', component: SearchComponent },
+  { path: 'stock', component: StockComponent }
 ];
 
 
@@ -40,7 +42,8 @@ const routes: Routes = [
     AdminloginComponent,
     DashboardComponent,
     AdmindashboardComponent,
-    SearchComponent
+    SearchComponent,
+    StockComponent
   ],
   imports: [
     BrowserModule,
