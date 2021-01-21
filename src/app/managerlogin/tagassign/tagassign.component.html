@@ -1,0 +1,66 @@
+
+
+<div class="testbox">
+    <form method="POST" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
+      <div class="banner">
+        <h1> TAG REGISTRATION</h1>
+      </div>
+      <div class="item">
+  
+        <div class="name-item">
+        
+        </div>
+      </div>
+     
+      <div class="item">
+     
+        <div class="city-item">
+
+    
+
+          <input type="number" name="tagnumber" placeholder="Tag Number" ngModel/>
+
+
+
+          <input type="name" name="item" placeholder="Item" ngModel/>
+
+          <input type="number" name="quantity" placeholder="Quantity" ngModel/>
+
+
+
+        </div>
+      </div>
+    
+      
+      <div class="btn-block">
+        <input type="submit" value="Register" >
+      </div>
+
+
+      <table class="table">
+          <thead>
+            <tr>
+              
+              <th scope="col">Tag number</th>
+              <th scope="col">Item</th>
+              <th scope="col">Quantity</th>
+  
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of taglist">
+              
+              <td>{{x.tagid}}</td>
+              <td>{{x.item}}</td>
+              <td>{{x.quantity}}</td>
+  
+            </tr>
+
+           
+          </tbody>
+        </table>
+
+
+    </form>
+
+  </div>

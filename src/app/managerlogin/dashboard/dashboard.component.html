@@ -109,14 +109,14 @@
                       <div class="card bg-primary text-white mb-4">
                           <div class="card-body">Capacity</div>
                           <div class="card-footer d-flex align-items-center justify-content-between">
-                              <a class="small text-white stretched-link" routerLink="stock">View Details</a>
+                              <a class="small text-white stretched-link" routerLink="../stock">View Details</a>
                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                           </div>
                       </div>
                   </div>
                   <div class="col-xl-3 col-md-6">
                       <div class="card bg-warning text-white mb-4">
-                          <div class="card-body">Commodity Management</div>
+                          <div class="card-body">Commodity</div>
                           <div class="card-footer d-flex align-items-center justify-content-between">
                               <a class="small text-white stretched-link" href="#">View Details</a>
                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -127,12 +127,12 @@
                       <div class="card bg-success text-white mb-4">
                           <div class="card-body">Tag Assignment</div>
                           <div class="card-footer d-flex align-items-center justify-content-between">
-                              <a class="small text-white stretched-link" href="#">View Details</a>
+                              <a class="small text-white stretched-link" routerLink="../tagassign">View Details</a>
                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                           </div>
                       </div>
                   </div>
-                  <div class="col-xl-3 col-md-6">
+                  <!--<div class="col-xl-3 col-md-6">
                       <div class="card bg-danger text-white mb-4">
                           <div class="card-body">Record</div>
                           <div class="card-footer d-flex align-items-center justify-content-between">
@@ -140,7 +140,7 @@
                               <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                           </div>
                       </div>
-                  </div>
+                  </div>-->
               </div>
              <!-- <div class="row">
                   <div class="col-xl-6">
@@ -184,7 +184,8 @@
                               <tbody>
                                   <tr *ngFor="let x of rfidlist">
                                       <td>{{x.item}}</td>
-                                      <td>{{x.action}}</td>
+                                      <td *ngIf="x.action==0">import</td>
+                                      <td *ngIf="x.action==1">export</td>
                                       <td>{{x.quantity}}</td>
                                       <td>{{x.date}}</td>
                                       <td>{{x.time}}</td>

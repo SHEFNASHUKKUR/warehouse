@@ -178,24 +178,65 @@ app.post('/api/managerinfo',authenticateToken, function(req, res) {
 
                   db.connect(function(err) {
                     //if (err) throw err;
-                   
-                    db.query("SELECT EXISTS(SELECT 1 from rfid WHERE tagid= '"+id+"')", function (err, result, fields) {
-                      console.log(result);
-                      if (result==1){
-                        db.query("UPDATE rfid set status=1 where tagid="+id, function (err, result, fields) {
-
-                        });
-                        
-                      }
-                      else{
-                        db.query("INSERT INTO rfid(tagid, action, date, time) VALUES ("+id,0,today,timeString+")", function (err, result, fields) {
-
-                        });
-                      }
-                      res.status(200).json({'status':1});
+                   sql="INSERT INTO `rfid`(`tagid`, `action`, `date`, `time`) VALUES ('"+id+"','0','"+today+"','"+timeString+"')"
+                   console.log(sql)
+                    db.query(sql, function (err, result, fields) {
+                     
                     });
+                    sql1="UPDATE `rfid` SET `action`=1 WHERE tagid='"+id+"'"
+                    console.log(sql1)
+                    db.query(sql1, function (err, result, fields) {
+                     
+        });
+
+                    
+
                   });
-                    });
+});
+
+
+
+//tagassign
+app.post('/api/tagassign',authenticateToken, function(req, res) {
+  var tagnumber=req.body.tagnumber
+  var item=req.body.item
+  var quantity=req.body.quantity
+  db.connect(function(err) {
+    //if (err) throw err;
+    console.log(req.user);
+    sql2="INSERT INTO `registration`(`tagid`, `item`, `quantity`) VALUES ('"+tagnumber+"','"+item+"','"+quantity+"')"
+    db.query(sql2, function (err, result, fields) {
+      res.status(200).json({'status':1});
+    });
+  });
+    });
+
+
+    app.post('/api/tagshow',authenticateToken, function(req, res) {
+      db.connect(function(err) {
+        //if (err) throw err;
+       
+        db.query("SELECT tagid,item,quantity from registration", function (err, result, fields) {
+          res.status(200).json({'status':1,'info': result});
+        });
+      });
+});
+
+
+app.post('/api/stockshow',authenticateToken, function(req, res) {
+  db.connect(function(err) {
+    //if (err) throw err;
+   
+    db.query("SELECT coomodity,capacity from cdetails", function (err, result, fields) {
+      res.status(200).json({'status':1,'info': result});
+    });
+  });
+    });
+
+
+
+
+                    
     
 
 
