@@ -1,1 +1,44 @@
-<p>commodity works!</p>
+
+
+<div class="testbox">
+    <form method="POST" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
+      <div class="banner">
+        <h1>ADD COMMODITY</h1>
+      </div>
+      <div class="item">
+  
+        <div class="name-item">
+        
+        </div>
+      </div>
+     
+      <div class="item">
+     
+        <div class="city-item">
+
+    
+
+          <!--<input type="number" name="deptidr" placeholder="Dept id"/>-->
+
+
+
+          <input type="name" name="commodity" placeholder="Commodity" ngModel/>
+
+          <input type="number" name="capacity" placeholder="Capacity" ngModel/>
+
+
+
+        </div>
+      </div>
+    
+      
+      <div class="btn-block">
+        <input type="submit" value="Register" >
+      </div>
+
+
+     
+
+    </form>
+
+  </div>

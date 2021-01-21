@@ -30,6 +30,7 @@ function authenticateToken(req, res, next) {
   jwt.verify(token, accessTokenSecret, (err, user) => {
     if (err) return res.status(200).json({"status":"0"})
     req.user = user.email
+    req.deptid=user.deptid
     next()
   })
 }
@@ -59,7 +60,7 @@ app.post('/api/login', function(req, res) {
         db.query("SELECT * FROM department where email='"+user+"' and password='"+pass+"'", function (err, result, fields) {
           //if (err) throw err;
           console.log(result[0].email);
-          const token = jwt.sign({ "email":result[0].email }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
+          const token = jwt.sign({ "email":result[0].email,"deptid":result[0].deptid }, "ohmygod", { 		algorithm: "HS256", 		expiresIn: 3600, 	})
           console.log(token)
           res.status(200).json({'status':'success','token': token});
         });
@@ -227,14 +228,26 @@ app.post('/api/stockshow',authenticateToken, function(req, res) {
   db.connect(function(err) {
     //if (err) throw err;
    
-    db.query("SELECT coomodity,capacity from cdetails", function (err, result, fields) {
+    db.query("SELECT coomodity,capacity from cdetails where deptid="+req.deptid, function (err, result, fields) {
       res.status(200).json({'status':1,'info': result});
     });
   });
     });
 
 
-
+//commodity adding
+app.post('/api/commodityadd',authenticateToken, function(req, res) {
+  var commodity=req.body.commodity
+  var quantity=req.body.quantity
+  db.connect(function(err) {
+    //if (err) throw err;
+    console.log(req.user);
+    sql2="INSERT INTO `cdetails`(`deptid`, `coomodity`, `capacity`) VALUES ('"+req.deptid+"','"+commodity+"','"+quantity+"')"
+    db.query(sql2, function (err, result, fields) {
+      res.status(200).json({'status':1});
+    });
+  });
+    });
 
                     
     

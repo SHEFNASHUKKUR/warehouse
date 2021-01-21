@@ -17,6 +17,8 @@ import { SearchComponent } from './search/search.component';
 import { StockComponent } from './managerlogin/dashboard/stock/stock.component';
 import { TagassignComponent } from './managerlogin/tagassign/tagassign.component';
 import { CommodityComponent } from './managerlogin/dashboard/commodity/commodity.component';
+import { AddgodownComponent } from './adminlogin/addgodown/addgodown.component';
+import { AddmanagerComponent } from './adminlogin/addmanager/addmanager.component';
 
 
 const routes: Routes = [ 
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'administrator', component: AdmindashboardComponent },
   { path: 'search', component: SearchComponent },
   { path: 'stock', component: StockComponent },
-  { path: 'tagassign', component: TagassignComponent }
+  { path: 'tagassign', component: TagassignComponent },
+  { path: 'commodity', component: CommodityComponent }
 ];
 
 
@@ -48,7 +51,9 @@ const routes: Routes = [
     SearchComponent,
     StockComponent,
     TagassignComponent,
-    CommodityComponent
+    CommodityComponent,
+    AddgodownComponent,
+    AddmanagerComponent
   ],
   imports: [
     BrowserModule,
