@@ -1,1 +1,56 @@
-<p>addgodown works!</p>
+<div class="testbox">
+    <form method="POST" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)" >
+      <div class="banner">
+        <h1>ADD GODOWN</h1>
+      </div>
+      <div class="item">
+  
+        <div class="name-item">
+        
+        </div>
+      </div>
+     
+      <div class="item">
+     
+        <div class="city-item">
+
+    
+
+          <!--<input type="number" name="deptidr" placeholder="Dept id"/>-->
+
+
+
+          <input type="number" name="regid" placeholder="Regid" ngModel/>
+          <input type="name" name="title" placeholder="Godownname" ngModel/>
+          <select name="district" ngModel>
+            <option value="">District</option>
+            <option value="Thiruvanathapuram">Thiruvanathapuram</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Pathanamthitta">Pathanamthitta</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Kottayam">Kottayam</option>
+  
+            <option value="Idukki">Idukki</option>
+            <option value="Eranakulam">Ernakulam</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Malappuram">Malappuram</option>
+          </select>
+          <input type="number" name="capacity" placeholder="Capacity" ngModel/>
+
+
+
+        </div>
+      </div>
+    
+      
+      <div class="btn-block">
+        <input type="submit" value="Register" >
+      </div>
+
+
+     
+
+    </form>
+
+  </div>

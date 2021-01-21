@@ -31,7 +31,9 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'stock', component: StockComponent },
   { path: 'tagassign', component: TagassignComponent },
-  { path: 'commodity', component: CommodityComponent }
+  { path: 'commodity', component: CommodityComponent },
+  { path: 'addgodown', component: AddgodownComponent },
+  { path: 'addmanager', component: AddmanagerComponent }
 ];
 
 

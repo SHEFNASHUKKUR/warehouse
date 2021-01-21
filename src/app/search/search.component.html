@@ -2,7 +2,7 @@
 
 
 <div class="testbox">
-    <form action="/">
+    <form method="POST" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
       <div class="banner">
         <h1> WAREHOUSE CHECKING</h1>
       </div>
@@ -19,31 +19,24 @@
 
     
 
-          <select>
-            <option value="">District</option>
-            <option value="1">Thiruvanathapuram</option>
-            <option value="2">Kollam</option>
-            <option value="3">Pathanamthitta</option>
-            <option value="4">Alappuzha</option>
-            <option value="5">Kottayam</option>
+          <select name="district" (change)=onchange($event) ngModel>
+            <option value="">District</option >
+            <option value="Thiruvanathapuram">Thiruvanathapuram</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Pathanamthitta">Pathanamthitta</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Kottayam">Kottayam</option>
   
-            <option value="1">Idukki</option>
-            <option value="2">Eranakulam</option>
-            <option value="3">Thrissur</option>
-            <option value="4">Palakkad</option>
-            <option value="5">Malappuram</option>
-            <option value="2">Kozhikode</option>
-            <option value="3">Wayanad</option>
-            <option value="4">Kannur</option>
-            <option value="5">Kasargod</option>
+            <option value="Idukki">Idukki</option>
+            <option value="Ernakulam">Ernakulam</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Malappuram">Malappuram</option>
           </select>
-          <select>
-            <option value="">Warehouse</option>
-            <option value="1">vijay godown</option>
-            <option value="2">rashmika godown</option>
-            <option value="3">KSWC godown </option>
-            <option value="4">shanmukam godown</option>
-            <option value="5">MR godown</option>
+          <select name="title" ngModel>
+            
+            <option *ngFor="let x of gtitle" value="{{x.title}}">{{x.title}}</option>
+            
           </select>
         </div>
       </div>
@@ -64,19 +57,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let x of searchr">
               
-              <td>Mark</td>
-              <td>Otto</td>
+              <td>{{x.coomodity}}</td>
+              <td>{{x.capacity}}</td>
   
             </tr>
-            <tr>
-              
-              <td>Jacob</td>
-              <td>Thornton</td>
-  
-            </tr>
-           
+            
+
           </tbody>
         </table>
 

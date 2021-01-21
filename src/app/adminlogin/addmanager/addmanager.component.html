@@ -1,1 +1,45 @@
-<p>addmanager works!</p>
+<div class="testbox">
+    <form method="POST" #userlogin="ngForm" (ngSubmit)="OnSubmit(userlogin.value)">
+      <div class="banner">
+        <h1>ADD MANAGER</h1>
+      </div>
+      <div class="item">
+  
+        <div class="name-item">
+        
+        </div>
+      </div>
+     
+      <div class="item">
+     
+        <div class="city-item">
+
+    
+
+          <!--<input type="number" name="deptidr" placeholder="Dept id"/>-->
+
+
+
+          <input type="number" name="deptid" placeholder="Deptid" ngModel/>
+          <input type="name" name="name" placeholder="Name" ngModel/>
+          <input type="email" name="email" placeholder="Email" ngModel/>
+          <input type="number" name="regid" placeholder="Regid" ngModel/>
+          <input type="name" name="username" placeholder="Username" ngModel/>
+          <input type="password" name="password" placeholder="password" ngModel/>
+          <input type="number" name="contact" placeholder="Contact" ngModel/>
+
+
+        </div>
+      </div>
+    
+      
+      <div class="btn-block">
+        <input type="submit" value="Register" >
+      </div>
+
+
+     
+
+    </form>
+
+  </div>

@@ -249,9 +249,69 @@ app.post('/api/commodityadd',authenticateToken, function(req, res) {
   });
     });
 
-                    
+   //add godown
+   app.post('/api/addgodown',authenticateTokenadmin, function(req, res) {
+    var regid=req.body.regid
+    var title=req.body.title
+    var district=req.body.district
+    var capacity=req.body.capacity
+    db.connect(function(err) {
+      //if (err) throw err;
+      console.log(req.user);
+      sql2="INSERT INTO `godown`(`regid`, `title`, `city`, `capacity`) VALUES ('"+regid+"','"+title+"','"+district+"','"+capacity+"')"
+      console.log(sql2)
+      db.query(sql2, function (err, result, fields) {
+        res.status(200).json({'status':1});
+      });
+    });
+      });
+   
+   //add manager
+   app.post('/api/addmanager',authenticateTokenadmin, function(req, res) {
+    var deptid=req.body.deptid
+    var name=req.body.name
+    var email=req.body.email
+    var regid=req.body.regid
+    var username=req.body.username
+    var password=req.body.password
+    var contact=req.body.contact
+    db.connect(function(err) {
+      //if (err) throw err;
+      console.log(req.user);
+      sql2="INSERT INTO `department`(`deptid`, `name`, `email`, `regid`, `username`, `password`, `contact`) VALUES ('"+deptid+"','"+name+"','"+email+"','"+regid+"','"+username+"','"+password+"','"+contact+"')"
+      console.log(sql2)
+      db.query(sql2, function (err, result, fields) {
+        res.status(200).json({'status':1});
+      });
+    });
+      });
+
+      app.post('/api/selectgodown', function(req, res) {
+        var godown=req.body.godown;
+        db.connect(function(err) {
+          //if (err) throw err;
+         
+          db.query("SELECT title from godown where city='"+godown+"'", function (err, result, fields) {
+            res.status(200).json({'status':1,'info': result});
+            console.log(result)
+          });
+        });
+          });
     
 
+          app.post('/api/search', function(req, res) {
+            var district=req.body.district;
+            var title=req.body.title;
+            db.connect(function(err) {
+              //if (err) throw err;
+             
+              db.query("SELECT c.coomodity,c.capacity from cdetails c,department d,godown g WHERE g.regid=d.regid AND c.deptid=d.deptid AND g.city='"+district+"' AND g.title='"+title+"'", function (err, result, fields) {
+                res.status(200).json({'status':1,'info': result});
+                console.log(result)
+              });
+            });
+              });
+        
 
 
 app.listen('3000', () => {
