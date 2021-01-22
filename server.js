@@ -189,7 +189,7 @@ app.post('/api/managerinfo',authenticateToken, function(req, res) {
                     db.query(sql1, function (err, result, fields) {
                      
         });
-
+        res.status(200).json({'status':1});
                     
 
                   });
